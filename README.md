@@ -1,80 +1,163 @@
 # README.md
+# Astro Documentation to PDF Converter
 
-## Export Nextjs Docs Script
-
-The script automates the process of cloning documentation repositories, converting Markdown files to HTML, and generating PDF files. This README covers installation and usage.
-
-Fork of the original [Docs-Exporter](https://github.com/Riyooo/Docs-Exporter). Thanks to Riyoo for the original!
-
----
+A Python script that automatically generates a well-formatted PDF from Astro's documentation repository. The script clones the documentation, processes all markdown files, and creates a PDF with a table of contents, proper formatting, and consistent styling.
 
 ## Features
 
-- Clone remote repositories with sparse checkout.
-- Convert Markdown files to HTML with code block and image path preprocessing.
-- Generate PDFs with custom headers, footers, and styles.
-- Automatically create a hierarchical Table of Contents (ToC).
-- Detect the latest version of the documentation.
-- Handles YAML frontmatter for metadata-rich documentation.
+- Automatic repository cloning and updating
+- Comprehensive documentation processing
+- Table of contents generation
+- Code block syntax highlighting
+- Image path handling
+- Proper page breaks
+- Custom header and footer
+- Error handling and recovery
+- Progress reporting
+- Clean temporary file management
 
----
+## Requirements
+
+### System Requirements
+- Python 3.7 or higher
+- Git installed and accessible from command line
+- Internet connection for repository access
+
+### Python Dependencies
+Install all required packages:
+```bash
+pip install -r requirements.txt
+```
+
+Install Playwright's browser:
+```bash
+playwright install chromium
+```
 
 ## Installation
 
-### Prerequisites
+1. Clone this repository or download the script files:
+```bash
+git clone 
+cd 
+```
 
-- Python 3.8+
-- Required Python packages:
-  - `markdown`
-  - `yaml`
-  - `tqdm`
-  - `playwright`
-  - `gitpython`
-- Ensure you have Playwright installed and configured:
-  ```bash
-  pip install playwright
-  playwright install
-  ```
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+playwright install chromium
+```
 
-### Clone the Repository and Install
-Clone the project repository, create a virtual environment, activate it, and install requirements.
+3. Ensure you have the following files in your directory:
+   - `astro_docs_to_pdf.py` (main script)
+   - `requirements.txt`
+   - `styles.css` (will be created automatically if missing)
 
----
-	```bash
-	git clone https://github.com/pacnpal/Docs-Exporter.git
-	cd Docs-Exporter
-	python -m venv .venv
-	source .venv/bin/activate
-	pip install -r requirements.txt
-	playwright install
-	```
 ## Usage
 
-### 1. Clone and Update Nextjs Repository
-Run the script to clone or update the remote documentation repository:
+Run the script:
 ```bash
-python export-docs.py
+python astro_docs_to_pdf.py
 ```
 
-### 2. Convert Markdown to HTML
-The script automatically processes `.md` and `.mdx` files, converting them to styled HTML.
+The script will:
+1. Clone/update the Astro documentation repository
+2. Process all documentation files
+3. Generate a PDF with proper formatting
+4. Create a table of contents
+5. Output the final PDF as `Astro_Documentation_YYYY-MM-DD.pdf`
 
-### 3. Generate PDF
-A PDF is created with a generated title and ToC. Ensure no other process is using the output file.
+## Output
 
-### Example Configuration
+The generated PDF includes:
+- Cover page with title and date
+- Table of contents with page numbers
+- Formatted documentation content
+- Code syntax highlighting
+- Properly sized images
+- Headers and footers with page numbers
+- Consistent styling throughout
+
+## Customization
+
+### CSS Styling
+The script creates a default `styles.css` file if none exists. You can modify this file to customize the PDF's appearance.
+
+### Output Options
+You can modify these variables in the script:
 ```python
-repo_url = "https://github.com/vercel/next.js.git"
-branch = "canary"
-docs_dir = "docs"
+repo_dir = "astro-docs"  # Local directory for cloned repo
+output_pdf = f"Astro_Documentation_{datetime.now().strftime('%Y-%m-%d')}.pdf"  # Output filename
 ```
 
-### Output
-- PDF file: `Next.js_Docs_vXX.XX.X_YYYY-MM-DD.pdf` or `Next.js_Documentation.pdf`
-- Logs: Process information printed to the terminal.
+### PDF Format
+Adjust the PDF format options in the `generate_pdf` function:
+```python
+format_options = {
+    'format': 'A4',
+    'margin': {
+        'top': '50px',
+        'right': '50px',
+        'bottom': '50px',
+        'left': '50px'
+    },
+    'print_background': True,
+    # ... other options
+}
+```
 
----
+## Troubleshooting
 
-## LICENSE
+### Common Issues
 
-This project is governed by the [LICENSE](LICENSE) file. Please ensure compliance when redistributing or modifying the script.
+1. **Git Clone Failures**
+   - Ensure you have git installed
+   - Check your internet connection
+   - Verify repository access permissions
+
+2. **PDF Generation Errors**
+   - Check if output PDF is already open
+   - Ensure enough disk space
+   - Verify Playwright browser installation
+
+3. **Image Loading Issues**
+   - Check internet connection
+   - Verify image paths in documentation
+   - Ensure Playwright timeouts are sufficient
+
+4. **Styling Problems**
+   - Verify styles.css exists and is readable
+   - Check CSS syntax
+   - Ensure no conflicting styles
+
+### Error Messages
+
+The script provides detailed error messages for common issues:
+- Repository cloning failures
+- File processing errors
+- PDF generation problems
+- Resource cleanup issues
+
+## Limitations
+
+- Requires active internet connection
+- May take several minutes for large documentation sets
+- Memory usage scales with documentation size
+- Some complex MDX components may not render perfectly
+
+## Contributing
+
+Contributions are welcome! Please feel free to:
+1. Report bugs
+2. Suggest improvements
+3. Submit pull requests
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Acknowledgments
+
+- Built using Playwright for PDF generation
+- Processes documentation from the official Astro docs repository
+- Uses Python's markdown library for processing
