@@ -49,7 +49,7 @@ Modified work Copyright (C) 2024 PacNPal
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License version 3.
-Source code is available at: [Your Repository URL]
+Source code is available at: https://github.com/PacFactory/Docs-Exporter-Astro
 """
 
 def add_license_page(html_content):
@@ -60,7 +60,7 @@ def add_license_page(html_content):
         <pre style="white-space: pre-wrap; font-family: monospace;">
             {get_license_notice()}
         </pre>
-        <p>Complete source code for this program is available at: [Your Repository URL]</p>
+        <p>Complete source code for this program is available at: https://github.com/PacFactory/Docs-Exporter-Astro</p>
         <p>This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you 
         are welcome to redistribute it under certain conditions. See the GNU Affero General 
         Public License version 3 for details.</p>
