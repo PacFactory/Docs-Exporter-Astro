@@ -89,7 +89,7 @@ This fork includes several modifications from the original Docs-Exporter:
 
 ## License
 
-[Include the original project's license information here]
+[LICENSE](LICENSE)
 
 ## Contributing
 
